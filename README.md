@@ -49,7 +49,7 @@ src
 ## Setup and Installation
 1. Clone the repository:
    ```
-   git clone [repository-url]
+   git clone git@github.com:ouchin55edcx/SmartBank.git
    ```
 
 2. Ensure you have the following installed:
