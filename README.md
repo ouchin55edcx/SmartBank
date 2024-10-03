@@ -31,6 +31,9 @@ src
 │   │           ├── model
 │   │           ├── service
 │   │           ├── dao
+│   │           ├── util
+│   │                ├── EntityManagerSignleton
+
 │   ├── resources
 │   │   └── META-INF
 │   └── webapp
