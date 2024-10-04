@@ -1,6 +1,5 @@
 package com.ouchin.banksmart.model;
 
-import com.ouchin.banksmart.model.enums.Civility;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -53,9 +52,8 @@ public class Request {
     private String phone_number;
 
     @NotNull(message = "Civility cannot be null")
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Civility civility;
+    private String civility;
 
     @NotNull(message = "First name cannot be null")
     @Size(min = 2, max = 15, message = "First name must be between 2 and 15 characters")
@@ -100,7 +98,7 @@ public class Request {
     @Column(nullable = true)
     private BigDecimal other_loans_monthly_payment;
 
-    public Request(Long id, String project_name, String profession, int amount, LocalDate duration, float monthly_payments, String email, String phone_number, Civility civility, String first_name, String last_name, String cin, LocalDate date_of_birth, LocalDate start_date, BigDecimal monthly_net_income, boolean has_current_loans, BigDecimal mortgage_monthly_payment, BigDecimal other_loans_monthly_payment) {
+    public Request(Long id, String project_name, String profession, int amount, LocalDate duration, float monthly_payments, String email, String phone_number, String civility, String first_name, String last_name, String cin, LocalDate date_of_birth, LocalDate start_date, BigDecimal monthly_net_income, boolean has_current_loans, BigDecimal mortgage_monthly_payment, BigDecimal other_loans_monthly_payment) {
         this.id = id;
         this.project_name = project_name;
         this.profession = profession;
@@ -194,11 +192,11 @@ public class Request {
         this.phone_number = phone_number;
     }
 
-    public @NotNull(message = "Civility cannot be null") Civility getCivility() {
+    public @NotNull(message = "Civility cannot be null") String getCivility() {
         return civility;
     }
 
-    public void setCivility(@NotNull(message = "Civility cannot be null") Civility civility) {
+    public void setCivility(@NotNull(message = "Civility cannot be null") String civility) {
         this.civility = civility;
     }
 

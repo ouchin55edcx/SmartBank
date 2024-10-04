@@ -1,7 +1,11 @@
 package com.ouchin.banksmart.repository.Impl;
 
+import com.ouchin.banksmart.config.EntityManagerSignleton;
 import com.ouchin.banksmart.model.Request;
 import com.ouchin.banksmart.repository.RequestRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import jakarta.transaction.Transaction;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +14,22 @@ public class RequestRepositoryImpl implements RequestRepository {
 
     @Override
     public Request save(Request request) {
-        return null;
+        EntityManager em = EntityManagerSignleton.entityManagerFactory().createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            em.persist(request);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()){
+                em.getTransaction().rollback();
+            }
+            e.printStackTrace();
+            return null;
+        }finally {
+            em.close();
+        }
+        return request;
     }
 
     @Override
